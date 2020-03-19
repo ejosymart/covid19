@@ -1,16 +1,17 @@
 
-
 covid_series <- function(country, ...){
   #Data
   input <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", check.names = F, stringsAsFactors = T, header = T)
+  input$`Province/State` <- ifelse(nchar(as.character(input$`Province/State`)) == 0, as.character(input$`Country/Region`), as.character(input$`Province/State`))
+  
   
   #Preparing data
-  input <- input[, !(names(input) %in% c("Province/State", "Lat", "Long"))]
-  dates <- names(input)[-1] 
+  input <- input[, !(names(input) %in% c("Lat", "Long"))]
+  dates <- names(input)[-c(1, 2)] 
   
   data <- NULL
   for(i in country){
-    out  <- as.numeric(input[input$`Country/Region` == i, ][-1]) 
+    out  <- as.numeric(input[input$`Province/State` == i, ][-c(1, 2)]) 
     data <- rbind(data, out)
   }
   
@@ -30,12 +31,11 @@ covid_series <- function(country, ...){
   
   report <- data[, ncol(data)]
   names(report) <- country
-  cat("Reported positive cases\n" )
-  report
+  cat("Reported positive cases:\n\n" )
+  print(sort(report))
 }
 
 
 #RUN FUNCTION
-covid_series(country = c("Mexico","Argentina","Chile","Venezuela","Colombia", "Peru"))
-
-
+covid_series(country = c("Mexico", "Peru", "Oregon", "California", "France", "Washington"))
+# You will have a plot and a little table with positive confirmed cases by country/state.
