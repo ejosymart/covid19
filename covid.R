@@ -1,4 +1,5 @@
 
+
 covid_series <- function(country, ...){
   #Data
   input <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", check.names = F, stringsAsFactors = T, header = T)
@@ -25,8 +26,16 @@ covid_series <- function(country, ...){
   }
   
   legend("topleft", c(country), fill = c(seq_along(country)), bty = "n")
+  
+  
+  report <- data[, ncol(data)]
+  names(report) <- country
+  cat("Reported positive cases\n" )
+  report
 }
 
+
+#RUN FUNCTION
 covid_series(country = c("Mexico","Argentina","Chile","Venezuela","Colombia", "Peru"))
 
 
