@@ -1,7 +1,7 @@
 
 covid_series <- function(country, ...){
   #Data
-  input <- read.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv", check.names = F, stringsAsFactors = T, header = T)
+  input <- read.csv(file = "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv", stringsAsFactors = TRUE, check.names = F, header = T)
   input$`Province/State` <- ifelse(nchar(as.character(input$`Province/State`)) == 0, as.character(input$`Country/Region`), as.character(input$`Province/State`))
   
   
