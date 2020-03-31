@@ -34,6 +34,7 @@ colnames(output) <- c("Date", "Country", "Confirmed cases")
 return(output)
 
 }
-  
+
+#Report of confirmed cases by country by day
 dat <- covid_report(country = c("Mexico", "Peru", "Chile"))
 head(dat) 
