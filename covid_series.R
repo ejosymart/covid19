@@ -36,5 +36,5 @@ covid_series <- function(country, ...){
 
 
 #RUN FUNCTION
-covid_series(country = c("Mexico", "Peru", "Chile", "Ecuador", "Colombia", "Brazil", "Uruguay", "Paraguay", "Argentina", "Bolivia", "Venezuela"))
+covid_series(country = c("Mexico", "Peru", "Chile"))
 # You will have a plot and a little table with positive confirmed cases by country/state.
